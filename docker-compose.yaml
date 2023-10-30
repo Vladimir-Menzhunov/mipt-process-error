@@ -1,0 +1,10 @@
+version: '3'
+services:
+  auth:
+    image: mvxd/mipt-auth-project:main
+    ports:
+      - "8082:8082"
+  routing:
+    image: mvxd/mipt-routing-project:main
+    ports:
+      - "8083:8083"
