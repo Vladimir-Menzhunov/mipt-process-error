@@ -1,11 +1,11 @@
-package buycar
+package documents
 
-import buycar.api.HttpRoutes
-import buycar.config.ServiceConfig
+import documents.api.HttpRoutes
+import documents.config.ServiceConfig
 import zio._
 import zio.http.Server
 
-object BuyCarMain extends ZIOAppDefault {
+object DocumentsMain extends ZIOAppDefault {
   override def run: ZIO[Any with ZIOAppArgs with Scope, Any, Any] = {
     for {
       _ <- ZIO.logInfo("Start buy-car service")

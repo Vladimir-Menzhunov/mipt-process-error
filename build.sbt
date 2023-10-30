@@ -11,6 +11,8 @@ ThisBuild / assemblyMergeStrategy := {
     oldStrategy(x)
 }
 
+Compile / scalacOptions += "-Ymacro-annotations"
+
 lazy val root = (project in file("."))
   .settings(
     name := "process-errors"
@@ -19,20 +21,20 @@ lazy val root = (project in file("."))
     buycar,
     dealer,
     documents,
-    notification,
+    notifications,
     pay
   )
   .dependsOn(
     buycar,
     dealer,
     documents,
-    notification,
+    notifications,
     pay
   )
 
 lazy val buycar = (project in file("buycar"))
   .settings(
-    name := "buy-car",
+    name := "buycar",
     libraryDependencies ++= BuyCar.dependencies,
     assembly / assemblyJarName := "buycar.jar"
   )
@@ -51,7 +53,7 @@ lazy val documents = (project in file("documents"))
     assembly / assemblyJarName := "documents.jar"
   )
 
-lazy val notification = (project in file("notifications"))
+lazy val notifications = (project in file("notifications"))
   .settings(
     name := "notifications",
     libraryDependencies ++= Notifications.dependencies,

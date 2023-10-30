@@ -1,4 +1,4 @@
-package auth.config
+package buycar.config
 
 import pureconfig.ConfigSource
 import pureconfig.generic.auto.exportReader

@@ -1,4 +1,4 @@
-package buycar.api
+package notifications.api
 
 import zio.ZIO
 import zio.http._
@@ -8,7 +8,7 @@ object HttpRoutes {
   val app: HttpApp[Any, Response] =
     Http.collectZIO[Request] {
       case Method.GET -> !! / "hello" =>
-        ZIO.succeed(Response.text("Hello buycar service"))
+        ZIO.succeed(Response.text("Hello notifications service"))
 
 //      case req @ Method.POST -> !! / "greeting" / "by" =>
 //        val response =

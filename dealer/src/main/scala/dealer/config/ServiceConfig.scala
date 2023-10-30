@@ -1,4 +1,4 @@
-package buycar.config
+package dealer.config
 
 import pureconfig.ConfigSource
 import pureconfig.generic.auto.exportReader

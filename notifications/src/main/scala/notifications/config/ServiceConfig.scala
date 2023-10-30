@@ -1,4 +1,4 @@
-package buycar.config
+package notifications.config
 
 import pureconfig.ConfigSource
 import pureconfig.generic.auto.exportReader
