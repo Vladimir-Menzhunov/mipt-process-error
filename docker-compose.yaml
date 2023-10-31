@@ -1,0 +1,46 @@
+version: '3'
+services:
+  buycar:
+    build:
+      context: .
+      args:
+        - SERVICE_NAME=buycar
+        - SERVICE_PORT=9090
+    ports:
+      - "9090:9090"
+
+  dealer:
+    build:
+      context: .
+      args:
+        - SERVICE_NAME=dealer
+        - SERVICE_PORT=9091
+    ports:
+      - "9091:9091"
+
+  documents:
+    build:
+      context: .
+      args:
+        - SERVICE_NAME=documents
+        - SERVICE_PORT=9092
+    ports:
+      - "9092:9092"
+
+  notifications:
+    build:
+      context: .
+      args:
+        - SERVICE_NAME=notifications
+        - SERVICE_PORT=9093
+    ports:
+      - "9093:9093"
+
+  pay:
+    build:
+      context: .
+      args:
+        - SERVICE_NAME=pay
+        - SERVICE_PORT=9094
+    ports:
+      - "9094:9094"
