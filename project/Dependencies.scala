@@ -11,18 +11,18 @@ object Dependencies {
   }
 
   object Dealer extends Dependencies {
-    override def dependencies: Seq[ModuleID] = Seq(zio, pureconfig).flatten
+    override def dependencies: Seq[ModuleID] = Seq(zio, pureconfig, circe).flatten
   }
 
   object Documents extends Dependencies {
-    override def dependencies: Seq[ModuleID] = Seq(zio, pureconfig).flatten
+    override def dependencies: Seq[ModuleID] = Seq(zio, pureconfig, circe).flatten
   }
 
   object Pay extends Dependencies {
-    override def dependencies: Seq[ModuleID] = Seq(zio, pureconfig).flatten
+    override def dependencies: Seq[ModuleID] = Seq(zio, pureconfig, circe).flatten
   }
 
   object Notifications extends Dependencies {
-    override def dependencies: Seq[ModuleID] = Seq(zio, pureconfig).flatten
+    override def dependencies: Seq[ModuleID] = Seq(zio, pureconfig, circe).flatten
   }
 }

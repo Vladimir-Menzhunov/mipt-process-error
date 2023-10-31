@@ -1,12 +1,12 @@
 package integrations.dealer
 
-import zio.{Task, ZIO}
+import zio.{IO, ZIO}
 
 trait DealerIntegration {
-  def checkCar(name: String): Task[CarInfoResponse]
+  def checkCar(name: String): IO[Serializable, CarInfoResponse]
 }
 
 object DealerIntegration {
-  def checkCar(name: String): ZIO[DealerIntegration, Throwable, CarInfoResponse] =
+  def checkCar(name: String): ZIO[DealerIntegration, Serializable, CarInfoResponse] =
     ZIO.serviceWithZIO[DealerIntegration](_.checkCar(name))
 }

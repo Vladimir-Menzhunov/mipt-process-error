@@ -1,20 +1,17 @@
 package integrations.dealer
 
-import sttp.client3.circe.asJson
-import sttp.client3.{UriContext, basicRequest}
-import sttp.client3.httpclient.zio.SttpClient
-import sttp.client3.httpclient.zio.SttpClient.Service
+import io.circe.parser._
+import sttp.client3.{SttpBackend, UriContext, basicRequest}
 import sttp.model.Uri
-import zio.{Task, ZIO, ZLayer}
-import io.circe.generic.codec.DerivedAsObjectCodec.deriveCodec
+import zio.{IO, Task, ZIO, ZLayer}
 
-final class DealerIntegrationImpl(
-    httpClient: SttpClient.Service
+class DealerIntegrationImpl(
+    httpClient: SttpBackend[Task, Any]
 ) extends DealerIntegration {
 
   val baseUri: Uri = uri"http://localhost:9091"
 
-  override def checkCar(name: String): Task[CarInfoResponse] = {
+  override def checkCar(name: String): IO[Serializable, CarInfoResponse] = {
     val url = baseUri
       .addPath(Seq("check", "car"))
       .withParam("name", name)
@@ -22,13 +19,14 @@ final class DealerIntegrationImpl(
     val request =
       basicRequest
         .get(url)
-        .response(asJson[CarInfoResponse])
 
-    httpClient.send(request).flatMap(response => ZIO.fromEither(response.body))
+    httpClient.send(request).flatMap(response =>
+      ZIO.fromEither(response.body.flatMap(parse(_).flatMap(_.as[CarInfoResponse])))
+    )
   }
 }
 
 object DealerIntegrationImpl {
-  val live: ZLayer[Service, Nothing, DealerIntegrationImpl] =
+  val live: ZLayer[SttpBackend[Task, Any], Nothing, DealerIntegrationImpl] =
     ZLayer.fromFunction(new DealerIntegrationImpl(_))
 }
