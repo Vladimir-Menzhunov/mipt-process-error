@@ -7,7 +7,7 @@ trait Dependencies {
 
 object Dependencies {
   object BuyCar extends Dependencies {
-    override def dependencies: Seq[ModuleID] = Seq(zio, pureconfig, sttp, circe).flatten
+    override def dependencies: Seq[ModuleID] = Seq(zio, pureconfig, sttp, circe, rezilience).flatten
   }
 
   object Dealer extends Dependencies {

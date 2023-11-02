@@ -2,6 +2,7 @@ package buycar
 
 import buycar.api.HttpRoutes
 import buycar.config.ServiceConfig
+import circuitbreaker.MyCircuitBreakerImpl
 import integrations.dealer.DealerIntegrationImpl
 import integrations.documents.DocumentsIntegrationImpl
 import integrations.notifications.NotificationIntegrationImpl
@@ -24,6 +25,8 @@ object BuyCarMain extends ZIOAppDefault {
           DealerIntegrationImpl.live,
           PayIntegrationImpl.live,
           NotificationIntegrationImpl.live,
+          Scope.default,
+          MyCircuitBreakerImpl.live,
         )
 
     } yield server

@@ -11,8 +11,8 @@ object StartApp extends ZIOAppDefault {
       _ <- ZIO.logInfo("Start all services")
       _ <- BuyCarMain.run.fork
       _ <- DealerMain.run.fork
-      _ <- DocumentsMain.run.fork
-      //_ <- NotificationsMain.run.fork
+      //_ <- DocumentsMain.run.fork
+      _ <- NotificationsMain.run.fork
       _ <- PayMain.run
     } yield ()
   }
