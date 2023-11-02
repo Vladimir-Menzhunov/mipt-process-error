@@ -15,7 +15,7 @@ object domain {
         .tapError(_ => ZIO.logError("not provide userId"))
       carName <- ZIO
         .fromOption {
-          req.url.queryParams.get("name").flatMap(_.headOption)
+          req.url.queryParams.get("carName").flatMap(_.headOption)
         }
         .tapError(_ => ZIO.logError("not provide name"))
     } yield RequestInfo(userId, carName)

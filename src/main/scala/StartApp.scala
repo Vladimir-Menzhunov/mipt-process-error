@@ -12,7 +12,7 @@ object StartApp extends ZIOAppDefault {
       _ <- BuyCarMain.run.fork
       _ <- DealerMain.run.fork
       _ <- DocumentsMain.run.fork
-      _ <- NotificationsMain.run.fork
+      //_ <- NotificationsMain.run.fork
       _ <- PayMain.run
     } yield ()
   }

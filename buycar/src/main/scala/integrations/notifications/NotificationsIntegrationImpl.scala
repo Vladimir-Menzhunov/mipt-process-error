@@ -28,7 +28,11 @@ class NotificationIntegrationImpl(
           ).asJson.toString()
         )
 
-    httpClient.send(request).flatMap(response => ZIO.succeed(response.code))
+    for {
+      _ <- ZIO.logInfo("sending notification")
+      result <- httpClient.send(request).flatMap(response => ZIO.succeed(response.code))
+      _ <- ZIO.logInfo("sent notification")
+    } yield result
   }
 }
 
